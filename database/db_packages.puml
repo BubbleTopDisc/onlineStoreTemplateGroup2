@@ -1,0 +1,15 @@
+@startuml packages
+set namespaceSeparator none
+package "database" as database #aliceblue {
+}
+package "database.Admin_info" as database.Admin_info #aliceblue {
+}
+package "database.customer_info" as database.customer_info #aliceblue {
+}
+package "database.database_info" as database.database_info #aliceblue {
+}
+package "database.db" as database.db #aliceblue {
+}
+package "database.reset_database" as database.reset_database #aliceblue {
+}
+@enduml
