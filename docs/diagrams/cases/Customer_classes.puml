@@ -1,0 +1,15 @@
+@startuml classes
+set namespaceSeparator none
+class "Cart" as core.Customer.Cart #aliceblue {
+  date
+  quantity
+  tax
+  total
+}
+class "Customer" as core.Customer.Customer #aliceblue {
+  address
+  email
+  membership
+  name
+}
+@enduml

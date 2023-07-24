@@ -1,0 +1,12 @@
+@startuml classes
+set namespaceSeparator none
+class "Admin" as core.Admin.Admin #aliceblue {
+  discount
+  email
+  name
+  product
+  quantity
+  put_on_sale(product, discount)
+  restock(product, quantity)
+}
+@enduml
