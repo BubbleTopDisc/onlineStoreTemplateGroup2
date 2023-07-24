@@ -1,0 +1,24 @@
+@startuml classes
+set namespaceSeparator none
+class "Customer_histoy" as database.customer_info.Customer_histoy #aliceblue {
+  name
+  reports
+  user_history
+}
+class "Customer_info" as database.customer_info.Customer_info #aliceblue {
+  address
+  email
+  membership
+  name
+  ratings
+  reports
+  user_history
+}
+class "user_rattings" as database.customer_info.user_rattings #aliceblue {
+  email
+  name
+  ratings
+  reports
+  user_history
+}
+@enduml
