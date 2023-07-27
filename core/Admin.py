@@ -5,7 +5,7 @@ class Admin:
 
     def restock(self, product, quantity):
         self.product = product
-        self.quantity = quality
+        self.quantity = quantity
 
     def put_on_sale(self, product, discount):
         self.product = product
