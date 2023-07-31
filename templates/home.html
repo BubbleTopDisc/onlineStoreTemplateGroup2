@@ -16,8 +16,9 @@
                                 <img src="{{ product.image_url }}" class="product_card-img" alt="...">
                                 <div class="product_card-body">
                                     <h5 class="product_card-title">{{ product.item_name }}</h5>
-                                    <p class="product_card-text">{{ product.info }}</p>
-                                    <p class="product_card-price">${{ product.price }}</p>
+                                    <p class="product_card-text">{{ product.info }}<br>Range: {{ product.price_range }}
+                                    </p>
+                                    <p class="product_card-price">Starting Price: ${{ product.price }}</p>
                                     <input type="number" class="quantity" id={{product.id}} name={{product.id}}
                                         placeholder="0">
                                 </div>

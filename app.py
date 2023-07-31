@@ -82,6 +82,20 @@ def register_page():
     return render_template('register.html')
 
 
+@app.route('/Desktops')
+def desktops_page():
+    """
+    Renders the register page when the user is at the `/register` endpoint.
+
+    args:
+        - None
+
+    returns:
+        - None
+    """
+    return render_template('desktops.html')
+
+
 @app.route('/register', methods=['POST'])
 def register():
     """
