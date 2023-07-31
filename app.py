@@ -85,7 +85,7 @@ def register_page():
 @app.route('/Desktops')
 def desktops_page():
     """
-    Renders the register page when the user is at the `/register` endpoint.
+    Renders the desktops page when the user is at the `/Desktops` endpoint.
 
     args:
         - None
@@ -94,6 +94,34 @@ def desktops_page():
         - None
     """
     return render_template('desktops.html')
+
+
+@app.route('/Monitors')
+def monitorss_page():
+    """
+    Renders the monitors page when the user is at the `/Monitors` endpoint.
+
+    args:
+        - None
+
+    returns:
+        - None
+    """
+    return render_template('monitors.html')
+
+
+@app.route('/Laptops')
+def laptops_page():
+    """
+    Renders the desktops page when the user is at the `/Laptops` endpoint.
+
+    args:
+        - None
+
+    returns:
+        - None
+    """
+    return render_template('laptops.html')
 
 
 @app.route('/register', methods=['POST'])

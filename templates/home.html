@@ -19,17 +19,11 @@
                                     <p class="product_card-text">{{ product.info }}<br>Range: {{ product.price_range }}
                                     </p>
                                     <p class="product_card-price">Starting Price: ${{ product.price }}</p>
-                                    <input type="number" class="quantity" id={{product.id}} name={{product.id}}
-                                        placeholder="0">
+                                    <a href="/{{product.item_name}}" class="btn btn-primary" id="order_button">Order</a>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" id="index_buttons">
-                        <button type="submit" class="btn btn-primary" id="checkout_button">Order</button>
                     </div>
                 </div>
             </form>
