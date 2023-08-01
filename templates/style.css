@@ -120,3 +120,13 @@
     margin-bottom: 10px;
     text-align: center;
 }
+
+.btn-primary {
+    padding: 10px;
+    display: block;
+    text-align: left;
+}
+
+.image {
+    list-style: none;
+}
