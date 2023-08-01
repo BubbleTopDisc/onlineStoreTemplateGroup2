@@ -121,9 +121,9 @@
     text-align: center;
 }
 
-.btn-primary {
-    padding: 10px;
-    display: block;
+.btn-primary #login_button, #register_button {
+    padding: 15px;
+    display: inline;
     text-align: left;
 }
 
