@@ -166,15 +166,24 @@ def checkout():
     """
     order = {}
     user_session = sessions.get_session(username)
-    for item in products:
-        print(f"item ID: {item['id']}")
-        if request.form[str(item['id'])] > '0':
-            count = request.form[str(item['id'])]
-            order[item['item_name']] = count
-            user_session.add_new_item(
-                item['id'], item['item_name'], item['price'], count)
+    # for item in products:
+    #     print(f"item ID: {item['id']}")
+    #     if request.form[str(item['id'])] > '0':
+    #         count = request.form[str(item['id'])]
+    #         order[item['item_name']] = count
+    #         user_session.add_new_item(
+    #             item['id'], item['item_name'], item['price'], count)
 
-    user_session.submit_cart()
+    order_type = request.form['order_type']
+    if order_type == 'desktop':
+        # grab all values that are checked and add their numeric value to the order.
+        pass
+    elif order_type == 'laptop':
+        # grab all values that are checked and add their numeric value to the order.
+        pass
+    elif order_type == 'monitor':
+        pass
+    # user_session.submit_cart()
 
     return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
 
