@@ -124,7 +124,9 @@
 .btn-primary #login_button, #register_button {
     padding: 15px;
     display: block;
-    text-align: left;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 .image {
