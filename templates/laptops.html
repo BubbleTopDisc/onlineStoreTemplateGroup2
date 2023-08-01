@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laptops</title>
+    <title>Desktops</title>
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
@@ -16,9 +17,27 @@
         <h3>Laptop Order</h3>
         <hr>
         <div class="row">
-            <img src="orange.jpeg" alt="Image description">
-            <p>$100000</p>
+            <form action="/checkout" method="post" id="desktop_form">
+                <div class="form-check" id="desktop_form"></div>
+                <label for="order_type">Laptop</label>
+                <input type="checkbox" class="form-check-input" id="order_type" name="order_type" value="desktop"
+                    checked disabled>
         </div>
+        <div class="form-check" id="desktop_form">
+            <label for="graphics" class="form-check-label">Better Graphics</label>
+            <input type="checkbox" class="form-check-input" id="graphics" name="graphics" value="1000">
+        </div>
+        <div class="form-check" id="desktop_form">
+            <label for="cpu" class="form-check-label">Better CPU</label>
+            <input type="checkbox" class="form-check-input" id="cpu" name="cpu" value="500">
+        </div>
+        <div class="form-check" id="desktop_form">
+            <label for="ram" class="form-check-label">Better RAM</label>
+            <input type="checkbox" class="form-check-input" id="ram" name="ram" value="600">
+        </div>
+        <button type="submit" class="btn btn-primary" id="checkout_button">Checkout</button>
+        </form>
     </div>
+</div>
 </div>
 {% endblock %}
