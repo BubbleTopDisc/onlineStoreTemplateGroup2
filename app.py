@@ -174,16 +174,28 @@ def checkout():
     #         user_session.add_new_item(
     #             item['id'], item['item_name'], item['price'], count)
 
-    order_type = request.form['order_type']
+    order_type = request.form('order_type')
     if order_type == 'desktop':
-        # grab all values that are checked and add their numeric value to the order.
-        pass
+        if request.form.get('graphics'):
+            order['graphics'] = int(request.form['graphics'])
+        if request.form.get('cpu'):
+            order['cpu'] = int(request.form['cpu'])
+        if request.form.get('ram'):
+            order['ram'] = int(request.form['ram'])
     elif order_type == 'laptop':
-        # grab all values that are checked and add their numeric value to the order.
-        pass
+        if request.form.get('graphics'):
+            order['graphics'] = int(request.form['graphics'])
+        if request.form.get('cpu'):
+            order['cpu'] = int(request.form['cpu'])
+        if request.form.get('ram'):
+            order['ram'] = int(request.form['ram'])
     elif order_type == 'monitor':
-        pass
-    # user_session.submit_cart()
+        if request.form.get('small'):
+            order['small'] = int(request.form['small'])
+        if request.form.get('medium'):
+            order['medium'] = int(request.form['medium'])
+        if request.form.get('large'):
+            order['large'] = int(request.form['large'])
 
     return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
 
