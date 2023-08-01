@@ -123,7 +123,7 @@
 
 .btn-primary #login_button, #register_button {
     padding: 15px;
-    display: inline;
+    display: block;
     text-align: left;
 }
 
