@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +33,8 @@
                                     <img src="{{ product.image_url }}" class="product_card-img" alt="...">
                                     <div class="product_card-body">
                                         <h5 class="product_card-title">{{ product.item_name }}</h5>
-                                        <p class="product_card-text">{{ product.info }}</p>
+                                        <p class="product_card-text">{{ product.info }}<br>Range: {{ product.price_range
+                                            }}
                                         <p class="product_card-price">${{ product.price }}</p>
                                         <a href="/{{product.item_name}}" class="btn btn-primary"
                                             id="order_button">Order</a>
