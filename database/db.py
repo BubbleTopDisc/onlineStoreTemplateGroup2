@@ -719,3 +719,70 @@ class Database:
         self.cursor.execute(
             "UPDATE sales SET cost = ? WHERE id = ?", (new_cost, sale_id))
         self.connection.commit()
+
+    # --------------------------------------------
+    # --------------- Shopping Cart ---------------
+    # --------------------------------------------
+
+    def add_to_cart(self, username: str, item_id: int, quantity: int, discount: float = 0, tax: float = 0.05):
+        """
+        Adds an item to the user's shopping cart and calculates the cost.
+
+        args:
+            - username: The username of the user adding to the cart.
+            - item_id: The id of the item to add to the cart.
+            - quantity: The quantity of the item to add.
+            - discount: The discount for the item (default is 0).
+            - tax: The tax rate for the item (default is 0.05).
+
+        returns:
+            - The calculated cost for the item(s) added to the cart.
+        """
+        item_price = self.get_item_price_by_id(item_id)
+        new_cost = calculate_cost(item_price, quantity, discount, tax)
+
+        # Check if the user already has a shopping cart in the database.
+        cart = self.get_user_shopping_cart(username)
+        if cart:
+            # Update the cart with the new item.
+            self.cursor.execute(
+                "INSERT INTO shopping_cart (username, item_id, quantity, cost) VALUES (?, ?, ?, ?)",
+                (username, item_id, quantity, new_cost))
+        else:
+            # Create a new cart for the user.
+            self.cursor.execute(
+                "INSERT INTO shopping_cart (username, item_id, quantity, cost) VALUES (?, ?, ?, ?)",
+                (username, item_id, quantity, new_cost))
+        self.connection.commit()
+
+        return new_cost
+
+    def get_user_shopping_cart(self, username: str):
+        """
+        Gets the user's shopping cart from the database.
+
+        args:
+            - username: The username of the user.
+
+        returns:
+            - A list of items in the user's shopping cart.
+        """
+        self.cursor.execute(
+            "SELECT * FROM shopping_cart WHERE username = ?", (username,))
+        return self.cursor.fetchall()
+
+    def clear_user_shopping_cart(self, username: str):
+        """
+        Clears the user's shopping cart in the database.
+
+        args:
+            - username: The username of the user.
+
+        returns:
+            - None
+        """
+        self.cursor.execute(
+            "DELETE FROM shopping_cart WHERE username = ?", (username,))
+        self.connection.commit()
+
+        
