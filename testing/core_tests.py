@@ -1,6 +1,6 @@
 from core.session import Sessions, UserSession
 from database.db import Database
-
+import unittest
 
 def test_init_sessions() -> tuple:
     """
@@ -121,3 +121,15 @@ def test_get_session_db() -> tuple:
         return False, error
     else:
         return True, "Session's database is correct."
+
+class TestDatabaseInfo(unittest.TestCase):
+    def test_init(self):
+        db = database_info('test_db', 10, 1000, {'user1': 'history1'}, 20)
+        self.assertEqual(db.name, 'test_db')
+        self.assertEqual(db.users, 10)
+        self.assertEqual(db.profits, 1000)
+        self.assertEqual(db.user_history, {'user1': 'history1'})
+        self.assertEqual(db.sold, 20)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -58,6 +58,7 @@ def login():
         - sessions: adds a new session to the sessions object
 
     """
+ try:
     username = request.form['username']
     password = request.form['password']
     if login_pipeline(username, password):
@@ -66,6 +67,10 @@ def login():
     else:
         print(f"Incorrect username ({username}) or password ({password}).")
         return render_template('index.html')
+except Exception as e:
+    print(f"An error occurred: {e}")
+    # Jacob Blanton - This handles an exception in the code
+
 
 
 @app.route('/register')
@@ -107,7 +112,11 @@ def monitorss_page():
     returns:
         - None
     """
-    return render_template('monitors.html')
+    try:
+        return render_template('monitors.html')
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        # Jacob Blanton - Handles an exception here aswell
 
 
 @app.route('/Laptops')

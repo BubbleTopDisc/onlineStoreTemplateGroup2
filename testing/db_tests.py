@@ -1,6 +1,6 @@
 from database.db import Database
 from core.utils import dict_factory
-
+import unittest
 
 def test_init_db(db: Database = None) -> tuple:
     """
@@ -86,3 +86,15 @@ def test_check_connection_threaded(db: Database = None) -> tuple:
         return False, error
     else:
         return True, "Connection is not single threaded."
+
+class TestDatabaseInfo(unittest.TestCase):
+    def test_init(self):
+        db = database_info('test_db', 10, 1000, {'user1': 'history1'}, 20)
+        self.assertEqual(db.name, 'test_db')
+        self.assertEqual(db.users, 10)
+        self.assertEqual(db.profits, 1000)
+        self.assertEqual(db.user_history, {'user1': 'history1'})
+        self.assertEqual(db.sold, 20)
+
+if __name__ == '__main__':
+    unittest.main()
