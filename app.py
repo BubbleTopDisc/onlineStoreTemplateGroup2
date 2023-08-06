@@ -58,17 +58,17 @@ def login():
         - sessions: adds a new session to the sessions object
 
     """
- try:
-    username = request.form['username']
-    password = request.form['password']
-    if login_pipeline(username, password):
-        sessions.add_new_session(username, db)
-        return render_template('home.html', products=products, sessions=sessions)
-    else:
-        print(f"Incorrect username ({username}) or password ({password}).")
-        return render_template('index.html')
-except Exception as e:
-    print(f"An error occurred: {e}")
+    try:
+        username = request.form['username']
+        password = request.form['password']
+        if login_pipeline(username, password):
+            sessions.add_new_session(username, db)
+            return render_template('home.html', products=products, sessions=sessions)
+        else:
+            print(f"Incorrect username ({username}) or password ({password}).")
+            return render_template('index.html')
+    except Exception as e:
+        print(f"An error occurred: {e}")
     # Jacob Blanton - This handles an exception in the code
 
 
