@@ -139,15 +139,21 @@ def register():
         - passwords.txt: adds a new username and password combination to the file
         - database/store_records.db: adds a new user to the database
     """
-    username = request.form['username']
-    password = request.form['password']
-    email = request.form['email']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    salt, key = hash_password(password)
-    update_passwords(username, key, salt)
-    db.insert_user(username, key, email, first_name, last_name)
-    return render_template('index.html')
+    try:
+        username = request.form['username']
+        password = request.form['password']
+        if not password:
+            raise ValueError('Password is missing')
+        email = request.form['email']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        salt, key = hash_password(password)
+        update_passwords(username, key, salt)
+        db.insert_user(username, key, email, first_name, last_name)
+        return render_template('index.html')
+    except Exception as e:
+        print(e)
+        #Daniel Blanton - this test makes sure no incorrect values are entered as well as making sure password is not null
 
 
 @app.route('/checkout', methods=['POST'])
@@ -173,29 +179,32 @@ def checkout():
     #         order[item['item_name']] = count
     #         user_session.add_new_item(
     #             item['id'], item['item_name'], item['price'], count)
-
-    order_type = request.form('order_type')
-    if order_type == 'desktop':
-        if request.form.get('graphics'):
-            order['graphics'] = int(request.form['graphics'])
-        if request.form.get('cpu'):
-            order['cpu'] = int(request.form['cpu'])
-        if request.form.get('ram'):
-            order['ram'] = int(request.form['ram'])
-    elif order_type == 'laptop':
-        if request.form.get('graphics'):
-            order['graphics'] = int(request.form['graphics'])
-        if request.form.get('cpu'):
-            order['cpu'] = int(request.form['cpu'])
-        if request.form.get('ram'):
-            order['ram'] = int(request.form['ram'])
-    elif order_type == 'monitor':
-        if request.form.get('small'):
-            order['small'] = int(request.form['small'])
-        if request.form.get('medium'):
-            order['medium'] = int(request.form['medium'])
-        if request.form.get('large'):
-            order['large'] = int(request.form['large'])
+    try:
+        order_type = request.form('order_type')
+        if order_type == 'desktop':
+            if request.form.get('graphics'):
+                order['graphics'] = int(request.form['graphics'])
+            if request.form.get('cpu'):
+                order['cpu'] = int(request.form['cpu'])
+            if request.form.get('ram'):
+                order['ram'] = int(request.form['ram'])
+        elif order_type == 'laptop':
+            if request.form.get('graphics'):
+                order['graphics'] = int(request.form['graphics'])
+            if request.form.get('cpu'):
+                order['cpu'] = int(request.form['cpu'])
+            if request.form.get('ram'):
+                order['ram'] = int(request.form['ram'])
+        elif order_type == 'monitor':
+            if request.form.get('small'):
+                order['small'] = int(request.form['small'])
+            if request.form.get('medium'):
+                order['medium'] = int(request.form['medium'])
+            if request.form.get('large'):
+                order['large'] = int(request.form['large'])
+    except Exception as e:
+        print(e)
+        # Daniel Blanton - try and catch tests for incorrect inputs 
 
     return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
 
